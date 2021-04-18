@@ -1,0 +1,13 @@
+[package]
+name = "planetmaptest"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+noise  = "0.7.0"
+rapier3d-f64 = "0.8.0"
+
+#planetmap = { git = "https://github.com/Ralith/planetmap", rev = "ceb5225db72cc9c8d3278ab8d442ac0a30253e03", default-features = false, features = ["simd", "parry"] }
+planetmap = { git = "https://github.com/Ralith/planetmap", rev = "e88562ebbe04295a0da50abc5b3bc2df2275eecb", default-features = false, features = ["simd", "parry"] }
