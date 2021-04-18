@@ -41,17 +41,20 @@ impl PhysicsWorld {
         //TODO inspect use or need of IntegrationParameters::min_ccd_dt
         self.integration_parameters.dt = timestep;
 
-        {
+        if false {
             eprintln!("PRESTEP");
 
             self.bodies.iter_mut().for_each(|(_handle, body)| {
                 if !body.is_static() {
                     let pos = body.position().translation.vector;
                     let vel = *body.linvel();
-                    eprintln!(
-                        "body pos: [{:>8.3}, {:>8.3}, {:>8.3}], vel: [{:>8.3}, {:>8.3}, {:>8.3}]",
-                        pos.x, pos.y, pos.z, vel.x, vel.y, vel.z
-                    );
+
+                    if false {
+                        eprintln!(
+                            "body pos: [{:>8.3}, {:>8.3}, {:>8.3}], vel: [{:>8.3}, {:>8.3}, {:>8.3}]",
+                            pos.x, pos.y, pos.z, vel.x, vel.y, vel.z
+                        );
+                    }
                 }
             });
 
@@ -63,6 +66,13 @@ impl PhysicsWorld {
                 );
             });*/
         }
+
+        self.bodies.iter_mut().for_each(|(_handle, body)| {
+            body.apply_force(
+                body.position().translation.vector.normalize() * -10.0 * body.mass(),
+                false,
+            )
+        });
 
         self.pipeline.step(
             // spaaaaaace
